@@ -1,8 +1,5 @@
 package ui.windows;
 
-import java.awt.Color;
-
-import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Label;
@@ -30,8 +27,8 @@ public class VerNotasWindow extends Dialog<VerNotasViewModel> {
 
 		new Label(asignaciones).setText("Asignación: ");
 		Selector<Tarea> selectorTarea = new Selector<Tarea>(asignaciones).allowNull(true);
-		selectorTarea.bindItems(new ObservableProperty<>("tareasAsignadas")).adaptWith(Tarea.class, "nombre");
-		selectorTarea.bindValue(new ObservableProperty<>("tareaSeleccionada"));
+		selectorTarea.bindItemsToProperty("tareasAsignadas").adaptWith(Tarea.class, "nombre");
+		selectorTarea.bindValueToProperty("tareaSeleccionada");
 		
 		Panel nota = new Panel(mainPanel);
 		nota.setLayout(new HorizontalLayout());

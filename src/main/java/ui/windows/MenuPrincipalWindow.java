@@ -22,22 +22,22 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipalViewModel> {
 	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("Lector de notas");
 		
-		new Button(mainPanel).setCaption("Ver notas").onClick(() -> this.verNotas());
-		new Button(mainPanel).setCaption("Ver datos personales").onClick(() -> this.verDatos());
-		new Button(mainPanel).setCaption("Editar datos personales").onClick(() -> this.editarDatos());
+		new Button(mainPanel).setCaption("Ver notas").onClick(this::verNotas);
+		new Button(mainPanel).setCaption("Ver datos personales").onClick(this::verDatos);
+		new Button(mainPanel).setCaption("Editar datos personales").onClick(this::editarDatos);
 	}
 
-	public void verNotas() {
+	private void verNotas() {
 		Dialog<?> dialog = new VerNotasWindow(this);
 		dialog.open();
 	}
 	
-	public void verDatos() {
+	private void verDatos() {
 		Dialog<?> dialog = new VerDatosWindow(this);
 		dialog.open();
 	}
 		
-	public void editarDatos() {
+	private void editarDatos() {
 		Dialog<?> dialog = new EditarDatosWindow(this);
 		dialog.open();
 	}

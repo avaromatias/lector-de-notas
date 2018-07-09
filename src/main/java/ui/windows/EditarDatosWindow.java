@@ -43,7 +43,7 @@ public class EditarDatosWindow extends Dialog<Estudiante> {
 		new Label(git).setText("Usuario git: ");
 		new TextBox(git).setWidth(100).bindValueToProperty("usuarioGit");
 		
-		new Button(mainPanel).setCaption("Guardar").onClick(() -> this.guardarDatos());
+		new Button(mainPanel).setCaption("Guardar").onClick(this::guardarDatos);
 	}
 
 	private void guardarDatos() {

@@ -1,7 +1,6 @@
 package ui.viewModels;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.uqbar.commons.model.annotations.Observable;
 
@@ -17,7 +16,7 @@ public class VerNotasViewModel {
 	private String situacion;
 	
 	public VerNotasViewModel() {
-		this.tareasAsignadas = EstudianteLogueado.get().getAsignaciones().stream().map(asignacion -> asignacion.getTarea()).collect(Collectors.toList());
+		this.tareasAsignadas = EstudianteLogueado.get().getTareas();
 	}
 
 	public List<Tarea> getTareasAsignadas() {
@@ -33,9 +32,12 @@ public class VerNotasViewModel {
 	}
 
 	public void setTareaSeleccionada(Tarea tareaSeleccionada) {
-		this.nota = EstudianteLogueado.get().getAsignaciones().stream().filter(asignacion ->
-			asignacion.getTarea().equals(tareaSeleccionada)).findFirst().get().getNotaActual();
-		this.setSituacion(tareaSeleccionada.aprobo(EstudianteLogueado.get()));
+//		this.nota = EstudianteLogueado.get().getAsignaciones().stream().filter(asignacion ->
+//			asignacion.getTarea().equals(tareaSeleccionada)).findFirst().get().getNotaActual();
+//		this.setSituacion(tareaSeleccionada.aprobo(EstudianteLogueado.get()));
+
+		this.nota = EstudianteLogueado.get().getNotaDeTarea(tareaSeleccionada);
+		this.setSituacion(EstudianteLogueado.get().aprobo(tareaSeleccionada));
 		this.tareaSeleccionada = tareaSeleccionada;
 	}
 
@@ -48,8 +50,7 @@ public class VerNotasViewModel {
 	}
 	
 	public void setSituacion(boolean bool) {
-		if(bool) situacion = "Si";
-		else situacion = "No";
+		situacion = bool ? "Si" : "No";
 	}
 
 	public String getSituacion() {

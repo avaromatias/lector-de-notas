@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.commons.model.annotations.Observable;
 
@@ -13,12 +14,12 @@ public class Estudiante {
 	private String usuarioGit;
 	private List<Asignacion> asignaciones;
 		
-	public Estudiante(String unApellido, String unNombre, int unLegajo, String unUsuario, List<Asignacion> unasAsignaciones) {
-		this.apellido = unApellido;
-		this.nombre = unNombre;
-		this.legajo = unLegajo;
-		this.usuarioGit = unUsuario;
-		this.asignaciones = unasAsignaciones;
+	public Estudiante(String apellido, String nombre, int legajo, String usuarioGit, List<Asignacion> asignaciones) {
+		this.apellido = apellido;
+		this.nombre = nombre;
+		this.legajo = legajo;
+		this.usuarioGit = usuarioGit;
+		this.asignaciones = asignaciones;
 	}
 
 	public String getApellido() {
@@ -56,5 +57,23 @@ public class Estudiante {
 	public List<Asignacion> getAsignaciones() {
 		return asignaciones;
 	}
-	
+
+	public Boolean aprobo(Tarea tarea) {
+		return tarea.aprobo(this.getAsignacionSegunTarea(tarea));
+	}
+
+	public String getNotaDeTarea(Tarea tarea) {
+		return this.getAsignacionSegunTarea(tarea).getNotaActual();
+	}
+
+	private Asignacion getAsignacionSegunTarea(Tarea tarea) {
+		return this.getAsignaciones().stream()
+				.filter(asignacion -> asignacion.getTarea().equals(tarea))
+				.findFirst().get();
+	}
+
+	public List<Tarea> getTareas() {
+		return this.getAsignaciones().stream().map(Asignacion::getTarea).collect(Collectors.toList());
+
+	}
 }

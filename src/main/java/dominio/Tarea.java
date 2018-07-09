@@ -1,31 +1,21 @@
 package dominio;
 
-import java.util.stream.Collectors;
+import org.uqbar.commons.model.annotations.Observable;
 
+@Observable
 public class Tarea {
 
-	String nombre;
-	TipoCalificacion tipoCalificacion;
+	private String nombre;
+	private TipoCalificacion tipoCalificacion;
 	
-	public Tarea(String unNombre, TipoCalificacion unTipoCalificacion) {
-		this.nombre = unNombre;
-		this.tipoCalificacion = unTipoCalificacion;
+	public Tarea(String nombre, TipoCalificacion tipoCalificacion) {
+		this.nombre = nombre;
+		this.tipoCalificacion = tipoCalificacion;
 	}
 	
-	public boolean aprobo(Estudiante estudiante) {
-		Asignacion asignacionActual = estudiante.getAsignaciones().stream().filter(asignacion ->
-			asignacion.getTarea().equals(this)).collect(Collectors.toList()).get(0);
+	public boolean aprobo(Asignacion asignacion) {
 		
-		if(this.tipoCalificacion == TipoCalificacion.Numerica) return this.aproboNumerica(asignacionActual);
-		else return this.aproboConceptual(asignacionActual);
-	}
-	
-	public boolean aproboNumerica(Asignacion asignacion) {
-		return Double.parseDouble(asignacion.getNotaActual()) >= 6;
-	}
-	
-	public boolean aproboConceptual(Asignacion asignacion) {
-		return !(asignacion.getNotas().contains("M"));
+		return this.tipoCalificacion.estaAprobada(asignacion);
 	}
 
 	public String getNombre() {
