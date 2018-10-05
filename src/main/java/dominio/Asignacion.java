@@ -5,6 +5,7 @@ import java.util.List;
 public class Asignacion {
 
 	private Tarea tarea;
+	private String descripcion;
 	private List<String> notas;
 	
 	public Asignacion(Tarea tarea, List<String> notas) {

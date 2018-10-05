@@ -5,6 +5,7 @@ import org.uqbar.commons.model.annotations.Observable;
 @Observable
 public class Tarea {
 
+	private int id;
 	private String nombre;
 	private TipoCalificacion tipoCalificacion;
 	

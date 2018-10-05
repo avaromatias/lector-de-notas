@@ -1,7 +1,7 @@
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
-import ui.windows.*;
+import ui.windows.MenuPrincipalWindow;
 
 public class LectorDeNotasApp extends Application{
 
