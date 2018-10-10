@@ -7,13 +7,12 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import dominio.Estudiante;
-import repositorios.EstudianteLogueado;
+import ui.viewModels.VerDatosViewModel;
 
-public class VerDatosWindow extends Dialog<Estudiante>{
+public class VerDatosWindow extends Dialog<VerDatosViewModel>{
 
 	public VerDatosWindow(WindowOwner owner) {
-		super(owner, EstudianteLogueado.estudiante);
+		super(owner, new VerDatosViewModel());
 	}
 
 	@Override
@@ -24,22 +23,22 @@ public class VerDatosWindow extends Dialog<Estudiante>{
 		Panel nombre = new Panel(mainPanel);
 		nombre.setLayout(new HorizontalLayout());
 		new Label(nombre).setText("Nombre:       ");
-		new Label(nombre).bindValueToProperty("nombre");
+		new Label(nombre).bindValueToProperty("first_name");
 		
 		Panel apellido = new Panel(mainPanel);
 		apellido.setLayout(new HorizontalLayout());
 		new Label(apellido).setText("Apellido:      ");
-		new Label(apellido).bindValueToProperty("apellido");
+		new Label(apellido).bindValueToProperty("last_name");
 		
 		Panel legajo = new Panel(mainPanel);
 		legajo.setLayout(new HorizontalLayout());
 		new Label(legajo).setText("Legajo:         ");
-		new Label(legajo).bindValueToProperty("legajo");
+		new Label(legajo).bindValueToProperty("code");
 		
 		Panel git = new Panel(mainPanel);
 		git.setLayout(new HorizontalLayout());
 		new Label(git).setText("Usuario git:  ");
-		new Label(git).bindValueToProperty("usuarioGit");
+		new Label(git).bindValueToProperty("github_user");
 	}
 
 }

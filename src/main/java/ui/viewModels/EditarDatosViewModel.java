@@ -53,21 +53,18 @@ public class EditarDatosViewModel {
 	}
 
 	private void hacerElPut(String datosModificados){
-		ClientResponse respuesta = EstudianteLogueado.client
+		EstudianteLogueado.client
 		.resource(EstudianteLogueado.URL)
 		.path(EstudianteLogueado.RECURSOESTUDIANTE)
-		.header("Authorization", "Bearer " + EstudianteLogueado.TOKEN)
+		.header("Authorization", "Bearer " + EstudianteLogueado.token)
 		.type(MediaType.APPLICATION_JSON)
 		.put(ClientResponse.class, datosModificados);
-		
-		System.out.println(respuesta);
 	}
 	
 	public void actualizarDatos(){
 		Gson gson = new Gson();
 		EditarDatosViewModel estudianteAMandar = new EditarDatosViewModel(this.last_name, this.first_name, this.github_user);
 		String paqueteAMandar = gson.toJson(estudianteAMandar, EditarDatosViewModel.class);
-		System.out.println(paqueteAMandar);
 		this.hacerElPut(paqueteAMandar);
 	}
 	

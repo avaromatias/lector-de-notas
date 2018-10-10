@@ -3,9 +3,6 @@ package dominio;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.uqbar.commons.model.annotations.Observable;
-
-@Observable
 public class Estudiante {
 
 	private String apellido;
