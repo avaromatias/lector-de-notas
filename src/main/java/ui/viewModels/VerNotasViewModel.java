@@ -16,7 +16,7 @@ public class VerNotasViewModel {
 	private String situacion;
 	
 	public VerNotasViewModel() {
-		this.tareasAsignadas = EstudianteLogueado.get().getTareas();
+		this.tareasAsignadas = EstudianteLogueado.estudiante.getTareas();
 	}
 
 	public List<Tarea> getTareasAsignadas() {
@@ -36,8 +36,8 @@ public class VerNotasViewModel {
 //			asignacion.getTarea().equals(tareaSeleccionada)).findFirst().get().getNotaActual();
 //		this.setSituacion(tareaSeleccionada.aprobo(EstudianteLogueado.get()));
 
-		this.nota = EstudianteLogueado.get().getNotaDeTarea(tareaSeleccionada);
-		this.setSituacion(EstudianteLogueado.get().aprobo(tareaSeleccionada));
+		this.nota = EstudianteLogueado.estudiante.getNotaDeTarea(tareaSeleccionada);
+		this.setSituacion(EstudianteLogueado.estudiante.aprobo(tareaSeleccionada));
 		this.tareaSeleccionada = tareaSeleccionada;
 	}
 

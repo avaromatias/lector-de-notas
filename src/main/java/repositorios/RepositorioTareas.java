@@ -6,6 +6,8 @@ import java.util.List;
 import dominio.Tarea;
 import dominio.TipoCalificacion;
 
+//TODO Eliminar esta clase cuando todo ande correctamente
+
 class RepositorioTareas {
 
 	private static Tarea primerParcialDisenio = new Tarea("1 Parcial de diseño", TipoCalificacion.Numerica);

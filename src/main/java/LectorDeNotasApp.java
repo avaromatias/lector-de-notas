@@ -1,7 +1,7 @@
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
-import ui.windows.MenuPrincipalWindow;
+import ui.windows.LoginWindow;
 
 public class LectorDeNotasApp extends Application{
 
@@ -11,6 +11,6 @@ public class LectorDeNotasApp extends Application{
 		
 	@Override
 	protected Window<?> createMainWindow() {
-		return new MenuPrincipalWindow(this);
+		return new LoginWindow(this);
 	}
 }

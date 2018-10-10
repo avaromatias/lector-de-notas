@@ -13,7 +13,7 @@ import repositorios.EstudianteLogueado;
 public class VerDatosWindow extends Dialog<Estudiante>{
 
 	public VerDatosWindow(WindowOwner owner) {
-		super(owner, EstudianteLogueado.get());
+		super(owner, EstudianteLogueado.estudiante);
 	}
 
 	@Override

@@ -6,7 +6,9 @@ import java.util.List;
 
 import dominio.Asignacion;
 
-class RepositorioAsignaciones {
+// TODO Eliminar esta clase cuando todo ande correctamente
+
+public class RepositorioAsignaciones {
 
 	private static List<String> notasDisenio = Arrays.asList("2", "7.5");
 	private static Asignacion disenio = new Asignacion(RepositorioTareas.get().get(0), notasDisenio);
@@ -26,7 +28,7 @@ class RepositorioAsignaciones {
 	private static List<Asignacion> asignaciones = Arrays.asList(disenio, operativos, paradigmas,
 			paradigmasTp, operativosTp);
 
-	static List<Asignacion> get() {
+	public static List<Asignacion> get() {
 		return asignaciones;
 	}
 	

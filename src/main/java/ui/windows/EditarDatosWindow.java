@@ -9,13 +9,12 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import dominio.Estudiante;
-import repositorios.EstudianteLogueado;
+import ui.viewModels.EditarDatosViewModel;
 
-public class EditarDatosWindow extends Dialog<Estudiante> {
+public class EditarDatosWindow extends Dialog<EditarDatosViewModel> {
 
 	public EditarDatosWindow(WindowOwner owner) {
-		super(owner, EstudianteLogueado.get());
+		super(owner, new EditarDatosViewModel());
 	}
 
 	@Override
@@ -43,11 +42,7 @@ public class EditarDatosWindow extends Dialog<Estudiante> {
 		new Label(git).setText("Usuario git: ");
 		new TextBox(git).setWidth(100).bindValueToProperty("usuarioGit");
 		
-		new Button(mainPanel).setCaption("Guardar").onClick(this::guardarDatos);
-	}
-
-	private void guardarDatos() {
-		this.close();
+		new Button(mainPanel).setCaption("Guardar").onClick(()->this.getModelObject().actualizarDatos());
 	}
 
 }
