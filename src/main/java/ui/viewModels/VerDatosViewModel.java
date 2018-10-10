@@ -1,16 +1,7 @@
 package ui.viewModels;
 
-import java.util.ArrayList;
-
-import javax.ws.rs.core.MediaType;
-
 import org.uqbar.commons.model.annotations.Observable;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.sun.jersey.api.client.ClientResponse;
-
-import dominio.Estudiante;
 import repositorios.EstudianteLogueado;
 
 @Observable
@@ -54,30 +45,12 @@ public class VerDatosViewModel {
 	}
 
 	public VerDatosViewModel() {
-		this.cargarDatosEstudiante();
+		EstudianteLogueado.cargarDatosEstudiante();
 		
 		this.last_name = EstudianteLogueado.estudiante.getApellido();
 		this.first_name = EstudianteLogueado.estudiante.getNombre();
 		this.code = EstudianteLogueado.estudiante.getLegajo();
 		this.github_user = EstudianteLogueado.estudiante.getUsuarioGit();
-	}
-	
-	public void cargarDatosEstudiante() {
-		String salida = EstudianteLogueado.client
-				.resource(EstudianteLogueado.URL)
-				.path(EstudianteLogueado.RECURSOESTUDIANTE)
-				.header("Authorization", "Bearer " + EstudianteLogueado.token)
-				.accept(MediaType.APPLICATION_JSON)
-				.get(ClientResponse.class).getEntity(String.class);
-		
-		JsonParser parser = new JsonParser();
-		JsonObject mi = parser.parse(salida).getAsJsonObject();
-		String apellido = mi.get("last_name").getAsString();
-		String nombre = mi.get("first_name").getAsString();
-		int codigo = mi.get("code").getAsInt();
-		String usuarioGit = mi.get("github_user").getAsString();
-		
-		EstudianteLogueado.estudiante = new Estudiante(apellido, nombre, codigo, usuarioGit, new ArrayList<>());
 	}
 	
 }

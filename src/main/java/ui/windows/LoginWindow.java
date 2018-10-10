@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import repositorios.EstudianteLogueado;
 import ui.viewModels.LoginViewModel;
 
 public class LoginWindow extends SimpleWindow<LoginViewModel> {
@@ -43,6 +44,7 @@ public class LoginWindow extends SimpleWindow<LoginViewModel> {
 	}
 	
 	private void abrirMenuPrincipal(){
+		EstudianteLogueado.cargarDatosEstudiante();
 		SimpleWindow<?> menuPrincipal = new MenuPrincipalWindow(this);
 		menuPrincipal.open();
 	}

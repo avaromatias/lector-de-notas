@@ -52,7 +52,7 @@ public class EditarDatosViewModel {
 		this.github_user = github_user;
 	}
 
-	private void hacerElPut(String datosModificados){
+	private void modificarDatosEstudiante(String datosModificados){
 		EstudianteLogueado.client
 		.resource(EstudianteLogueado.URL)
 		.path(EstudianteLogueado.RECURSOESTUDIANTE)
@@ -65,7 +65,7 @@ public class EditarDatosViewModel {
 		Gson gson = new Gson();
 		EditarDatosViewModel estudianteAMandar = new EditarDatosViewModel(this.last_name, this.first_name, this.github_user);
 		String paqueteAMandar = gson.toJson(estudianteAMandar, EditarDatosViewModel.class);
-		this.hacerElPut(paqueteAMandar);
+		this.modificarDatosEstudiante(paqueteAMandar);
 	}
 	
 }
