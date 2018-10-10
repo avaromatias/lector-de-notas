@@ -25,22 +25,17 @@ public class EditarDatosWindow extends Dialog<EditarDatosViewModel> {
 		Panel nombre = new Panel(mainPanel);
 		nombre.setLayout(new HorizontalLayout());
 		new Label(nombre).setText("Nombre:      ");
-		new TextBox(nombre).setWidth(100).bindValueToProperty("nombre");
+		new TextBox(nombre).setWidth(100).bindValueToProperty("first_name");
 		
 		Panel apellido = new Panel(mainPanel);
 		apellido.setLayout(new HorizontalLayout());
 		new Label(apellido).setText("Apellido:     ");
-		new TextBox(apellido).setWidth(100).bindValueToProperty("apellido");
-		
-		Panel legajo = new Panel(mainPanel);
-		legajo.setLayout(new HorizontalLayout());
-		new Label(legajo).setText("Legajo:        ");
-		new TextBox(legajo).setWidth(100).bindValueToProperty("legajo");
+		new TextBox(apellido).setWidth(100).bindValueToProperty("last_name");
 		
 		Panel git = new Panel(mainPanel);
 		git.setLayout(new HorizontalLayout());
 		new Label(git).setText("Usuario git: ");
-		new TextBox(git).setWidth(100).bindValueToProperty("usuarioGit");
+		new TextBox(git).setWidth(100).bindValueToProperty("github_user");
 		
 		new Button(mainPanel).setCaption("Guardar").onClick(()->this.getModelObject().actualizarDatos());
 	}

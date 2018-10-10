@@ -1,7 +1,5 @@
 package ui.viewModels;
 
-import java.util.ArrayList;
-
 import javax.ws.rs.core.MediaType;
 
 import org.uqbar.commons.model.annotations.Observable;
@@ -9,49 +7,51 @@ import org.uqbar.commons.model.annotations.Observable;
 import com.google.gson.Gson;
 import com.sun.jersey.api.client.ClientResponse;
 
-import dominio.Estudiante;
 import repositorios.EstudianteLogueado;
 
 @Observable
 public class EditarDatosViewModel {
 
-	private String apellido;
-	private String nombre;
-	private int legajo;
-	private String usuarioGit;
+	private String last_name;
+	private String first_name;
+	private String github_user;
 	
 	public EditarDatosViewModel() {
-		this.apellido = EstudianteLogueado.estudiante.getApellido();
-		this.nombre = EstudianteLogueado.estudiante.getNombre();
-		this.legajo = EstudianteLogueado.estudiante.getLegajo();
-		this.usuarioGit = EstudianteLogueado.estudiante.getUsuarioGit();
+		this.last_name = EstudianteLogueado.estudiante.getApellido();
+		this.first_name = EstudianteLogueado.estudiante.getNombre();
+		this.github_user = EstudianteLogueado.estudiante.getUsuarioGit();
 	}
 	
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public int getLegajo() {
-		return legajo;
-	}
-	public void setLegajo(int legajo) {
-		this.legajo = legajo;
-	}
-	public String getUsuarioGit() {
-		return usuarioGit;
-	}
-	public void setUsuarioGit(String usuarioGit) {
-		this.usuarioGit = usuarioGit;
+	public EditarDatosViewModel(String apellido, String nombre, String usuarioGit) {
+		this.last_name = apellido;
+		this.first_name = nombre;
+		this.github_user = usuarioGit;
 	}
 	
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getGithub_user() {
+		return github_user;
+	}
+
+	public void setGithub_user(String github_user) {
+		this.github_user = github_user;
+	}
+
 	private void hacerElPut(String datosModificados){
 		ClientResponse respuesta = EstudianteLogueado.client
 		.resource(EstudianteLogueado.URL)
@@ -60,14 +60,14 @@ public class EditarDatosViewModel {
 		.type(MediaType.APPLICATION_JSON)
 		.put(ClientResponse.class, datosModificados);
 		
-		System.out.println(respuesta); // Devuelve un 201, o sea que deberia hacer el put correctamente, pero por alguna razon no lo hace
+		System.out.println(respuesta);
 	}
 	
 	public void actualizarDatos(){
 		Gson gson = new Gson();
-		Estudiante estudianteAMandar = new Estudiante(this.apellido, this.nombre, this.legajo, this.usuarioGit, new ArrayList<>());
-		String paqueteAMandar = gson.toJson(estudianteAMandar, Estudiante.class);
-		System.out.println(paqueteAMandar); // Los datos se envian bien
+		EditarDatosViewModel estudianteAMandar = new EditarDatosViewModel(this.last_name, this.first_name, this.github_user);
+		String paqueteAMandar = gson.toJson(estudianteAMandar, EditarDatosViewModel.class);
+		System.out.println(paqueteAMandar);
 		this.hacerElPut(paqueteAMandar);
 	}
 	
