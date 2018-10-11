@@ -1,28 +1,51 @@
 package dominio;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.model.annotations.Observable;
+
+@Observable
 public class Asignacion {
 
-	private Tarea tarea;
-	private String descripcion;
-	private List<String> notas;
-	
-	public Asignacion(Tarea tarea, List<String> notas) {
-		this.tarea = tarea;
-		this.notas = notas;
-	}
-	
-	public String getNotaActual() {
-		return this.notas.get(notas.size()-1);
+	private String id;
+	private String title;
+	private String description;
+
+	private List<Grade> grades = new LinkedList<>();
+
+	public Asignacion() {}
+
+	public List<Grade> getGrades() {
+		return grades;
 	}
 
-	List<String> getNotas() {
-		return notas;
+	public String getId() {
+		return id;
 	}
 
-	public Tarea getTarea() {
-		return tarea;
+	public String getTitle() {
+		return title;
 	}
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setGrades(List<Grade> grades) {
+		this.grades = grades;
+	}
+
 }

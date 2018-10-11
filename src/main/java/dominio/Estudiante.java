@@ -1,7 +1,6 @@
 package dominio;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Estudiante {
 
@@ -55,22 +54,7 @@ public class Estudiante {
 		return asignaciones;
 	}
 
-	public Boolean aprobo(Tarea tarea) {
-		return tarea.aprobo(this.getAsignacionSegunTarea(tarea));
-	}
-
-	public String getNotaDeTarea(Tarea tarea) {
-		return this.getAsignacionSegunTarea(tarea).getNotaActual();
-	}
-
-	private Asignacion getAsignacionSegunTarea(Tarea tarea) {
-		return this.getAsignaciones().stream()
-				.filter(asignacion -> asignacion.getTarea().equals(tarea))
-				.findFirst().get();
-	}
-
-	public List<Tarea> getTareas() {
-		return this.getAsignaciones().stream().map(Asignacion::getTarea).collect(Collectors.toList());
-
+	public void setAsignaciones(List<Asignacion> asignaciones) {
+		this.asignaciones = asignaciones;
 	}
 }

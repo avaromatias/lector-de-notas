@@ -13,8 +13,8 @@ import ui.viewModels.LoginViewModel;
 
 public class LoginWindow extends SimpleWindow<LoginViewModel> {
 	
-	public LoginWindow(WindowOwner parent) {
-		super(parent, new LoginViewModel());
+	public LoginWindow(WindowOwner owner) {
+		super(owner, new LoginViewModel());
 	}
 	
 	@Override

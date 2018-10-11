@@ -4,57 +4,31 @@ import java.util.List;
 
 import org.uqbar.commons.model.annotations.Observable;
 
-import dominio.Tarea;
+import dominio.Grade;
 import repositorios.EstudianteLogueado;
 
 @Observable
 public class VerNotasViewModel {
 
-	private List<Tarea> tareasAsignadas;
-	private Tarea tareaSeleccionada;
-	private String nota;
-	private String situacion;
-	
+	private List<Grade> grades;
+
 	public VerNotasViewModel() {
-		this.tareasAsignadas = EstudianteLogueado.estudiante.getTareas();
+		this.obtenerListaGrades();
 	}
 
-	public List<Tarea> getTareasAsignadas() {
-		return tareasAsignadas;
+	public List<Grade> getGrades() {
+		return grades;
 	}
 
-	public void setTareasAsignadas(List<Tarea> tareasAsignadas) {
-		this.tareasAsignadas = tareasAsignadas;
+	public void setGrades(List<Grade> grades) {
+		this.grades = grades;
 	}
 
-	public Tarea getTareaSeleccionada() {
-		return tareaSeleccionada;
+	private void obtenerListaGrades() {
+		this.grades = EstudianteLogueado.asignacionSeleccionada.getGrades();
 	}
 
-	public void setTareaSeleccionada(Tarea tareaSeleccionada) {
-//		this.nota = EstudianteLogueado.get().getAsignaciones().stream().filter(asignacion ->
-//			asignacion.getTarea().equals(tareaSeleccionada)).findFirst().get().getNotaActual();
-//		this.setSituacion(tareaSeleccionada.aprobo(EstudianteLogueado.get()));
-
-		this.nota = EstudianteLogueado.estudiante.getNotaDeTarea(tareaSeleccionada);
-		this.setSituacion(EstudianteLogueado.estudiante.aprobo(tareaSeleccionada));
-		this.tareaSeleccionada = tareaSeleccionada;
+	public int cantidadGradesEnAsignacion() {
+		return EstudianteLogueado.asignacionSeleccionada.getGrades().size();
 	}
-
-	public String getNota() {
-		return nota;
-	}
-
-	public void setNota(String nota) {
-		this.nota = nota;
-	}
-	
-	public void setSituacion(boolean bool) {
-		situacion = bool ? "Si" : "No";
-	}
-
-	public String getSituacion() {
-		return situacion;
-	}
-	
 }
